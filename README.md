@@ -25,83 +25,31 @@ The chip8 has a hexadecimal keyboard of 16 buttons, here are the mappings :
 
 <table>
 	<tr>
-		<td>1</td>
-		<td>a</td>
+		<td>1 : A</td>
+		<td>2 : Z</td>
+		<td>3 : E</td>
+		<td>C : O</td>
 	</tr>
 
 	<tr>
-		<td>2</td>
-		<td>z</td>
+		<td>4 : Q</td>
+		<td>5 : S</td>
+		<td>6 : D</td>
+		<td>D : J</td>
 	</tr>
 
 	<tr>
-		<td>3</td>
-		<td>e</td>
+		<td>7 : W</td>
+		<td>8 : X</td>
+		<td>9 : C</td>
+		<td>E : K</td>
 	</tr>
 
 	<tr>
-		<td>4</td>
-		<td>q</td>
-	</tr>
-
-	<tr>
-		<td>5</td>
-		<td>s</td>
-	</tr>
-
-	<tr>
-		<td>6</td>
-		<td>d</td>
-	</tr>
-
-	<tr>
-		<td>7</td>
-		<td>w</td>
-	</tr>
-
-	<tr>
-		<td>8</td>
-		<td>x</td>
-	</tr>
-
-	<tr>
-		<td>9</td>
-		<td>c</td>
-	</tr>
-
-	<tr>
-		<td>0</td>
-		<td>Space bar</td>
-	</tr>
-
-	<tr>
-		<td>A</td>
-		<td>u</td>
-	</tr>
-
-	<tr>
-		<td>B</td>
-		<td>i</td>
-	</tr>
-
-	<tr>
-		<td>C</td>
-		<td>o</td>
-	</tr>
-
-	<tr>
-		<td>D</td>
-		<td>j</td>
-	</tr>
-
-	<tr>
-		<td>E</td>
-		<td>k</td>
-	</tr>
-
-	<tr>
-		<td>F</td>
-		<td>l</td>
+		<td>A : U</td>
+		<td>0 : Space bar</td>
+		<td>B : I</td>
+		<td>F : L</td>
 	</tr>
 </table>
 
