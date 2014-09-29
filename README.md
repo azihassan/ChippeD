@@ -11,9 +11,11 @@ Running
 
 The program takes a few arguments :
 
-- -z or --zoom N : Changes the resolution to N times the initial resolution of 64x32
--d or --debug : Activates the debug mode. This will print the opcodes as they get interpreted as well as the memory addresses.
--o or --out FILE : If the debug mode is enabled, the data will be printed to stdout. Use this flag to redirect the output to the FILE of your choice.
+* -z or --zoom N : Changes the resolution to N times the initial resolution of 64x32
+* -d or --debug : Activates the debug mode. This will print the opcodes as they get interpreted as well as the memory addresses.
+* -o or --out FILE : If the debug mode is enabled, the data will be printed to stdout. Use this flag to redirect the output to the FILE of your choice.
+
+A precompiled version for Windows can be downloaded [here](https://drive.google.com/file/d/0B0q6zR75es1eMWhhM2tvblF3UEE/edit?usp=sharing).
 
 Key mapping
 -----------
@@ -104,4 +106,4 @@ The chip8 has a hexadecimal keyboard of 16 buttons, here are the mappings :
 </table>
 
 
-
+In addition to these, the speed of the emulation can be controlled with the P and M buttons. P speeds it up while M slows it down.
