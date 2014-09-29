@@ -1,0 +1,9 @@
+{
+	"name": "chip8",
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2014, salvatore",
+	"authors": ["salvatore"],
+	"dependencies": {
+		"derelict-sdl2": ">=1.2.6"
+	}
+}
