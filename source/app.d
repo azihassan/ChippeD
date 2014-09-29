@@ -12,7 +12,7 @@ int main(string[] args)
 	DerelictSDL2.load();
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 
-	int delay = 6;
+	int delay = 12;
 	bool debug_enable = false;
 	string output = "stdout";
 	File writer = stdout;
@@ -22,6 +22,16 @@ int main(string[] args)
 		"o|out", &output,
 		"d|debug", &debug_enable
 	);
+	if(args.length == 1)
+	{
+		writefln("Usage : %s game.ch8", args[0]);
+		writeln();
+		writeln("-z|--zoom N : multiply the 64x32 resolution N times");
+		writeln("-d|--debug : display opcodes in real time");
+		writeln("-o|--out FILE : redirect output to the given FILE");
+		writeln();
+		return 0;
+	}
 
 	if(output != "stdout")
 		writer = File(output, "w");
@@ -41,7 +51,7 @@ int main(string[] args)
 	bool pause = false;
 	SDL_Event event;
 	int i;
-	int sleep_after = 2; //delay after this many cycles
+	int sleep_after = 5; //sleep after this many cycles
 
 	auto timers_timer = SDL_AddTimer(16u, cast(SDL_TimerCallback) &decrementTimers, cast(void *) cpu);
 	auto screen_timer = SDL_AddTimer(16u, cast(SDL_TimerCallback) &updateScreen, cast(void *) scr);
