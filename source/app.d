@@ -18,8 +18,8 @@ int main(string[] args)
 	File writer = stdout;
 	ushort zoom = 5;
 	getopt(args, std.getopt.config.passThrough,
-		"zoom", &zoom,
-		"out", &output,
+		"z|zoom", &zoom,
+		"o|out", &output,
 		"d|debug", &debug_enable
 	);
 
@@ -66,17 +66,17 @@ int main(string[] args)
 				else if(pressed == SDLK_p)
 				{
 					sleep_after = (sleep_after + 1) > 50 ? 50 : sleep_after + 1;
-					scr.setTitle(sleep_after.to!string ~ " instructions before sleep");
+					scr.setTitle(sleep_after.to!string ~ " opcodes per cycle");
 				}
 				else if(pressed == SDLK_m)
 				{
 					sleep_after = (sleep_after - 1) < 1 ? 1 : sleep_after - 1;
-					scr.setTitle(sleep_after.to!string ~ " instructions before sleep");
+					scr.setTitle(sleep_after.to!string ~ " opcodes per cycle");
 				}
 				else if(pressed == SDLK_RETURN)
 				{
 					pause = !pause;
-					scr.setTitle("[Pause]", false);
+					scr.setTitle("[Pause]");
 				}
 				else
 				{
