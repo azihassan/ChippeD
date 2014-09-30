@@ -77,6 +77,8 @@ class Screen
 				}
 			}
 		}
+		/*if(changed)
+			render();*/
 		return collision;
 	}
 
@@ -88,7 +90,7 @@ class Screen
 		foreach(x; 0 .. grid.length)
 			foreach(y; 0 .. grid[0].length)
 				if(grid[x][y].lit)
-					SDL_RenderDrawRect(renderer, &grid[x][y].pos);
+					SDL_RenderFillRect(renderer, &grid[x][y].pos);
 		SDL_RenderPresent(renderer);
 	}
 
