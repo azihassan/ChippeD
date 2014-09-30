@@ -79,11 +79,6 @@ class Cpu
 	{
 		auto op = OpCode(memory[pc] << 8 | memory[pc + 1]);
 		logger.writef("[%x @ %x] ", op.value, pc);
-		if(wait_for_keypress)
-		{
-			_fx0a(op);
-			return;
-		}
 		if((op.mask) !in callbacks)
 		{
 			logger.writefln("Opcode %x not implemented yet.", op.value);
@@ -358,6 +353,10 @@ class Cpu
 			V[op.x] = pressed;
 			wait_for_keypress = false;
 			pc += 2;
+		}
+		else
+		{
+			pc -= 2;
 		}
 	}
 	
