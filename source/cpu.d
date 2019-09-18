@@ -5,7 +5,7 @@ import std.string;
 import utils;
 import keyboard;
 import display;
-import std.datetime : StopWatch;
+import std.datetime.stopwatch : StopWatch;
 
 struct OpCode
 {
@@ -54,17 +54,20 @@ class Cpu
 	ushort[16] stack;
 	void delegate(OpCode op)[ushort] callbacks;
 
-	public:
 	Logger logger;
-	Screen scr;
-	Keyboard kbd;
+	Screen screen;
+	Keyboard keyboard;
 
-	this()
+        public:
+	this(Keyboard keyboard, Logger logger, Screen screen)
 	{
+		this.keyboard = keyboard;
+		this.screen = screen;
+		this.logger = logger;
 		pc = 0x200;
 		memory[0 .. display.fonts.length] = display.fonts;
 
-		foreach(x; Iota!(0, 16))
+		static foreach(x; 0 .. 16)
 			mixin("callbacks[0x%x000] = &_%xxxx;".format(x, x));
 	}
 
@@ -72,7 +75,7 @@ class Cpu
 	{
 		auto rom = cast(ubyte[]) game.read();
 		memory[pc .. pc + rom.length] = rom;
-		scr.setTitle("Running : " ~ game.baseName);
+		screen.setTitle("Running : " ~ game.baseName);
 	}
 
 	void runCycle()
@@ -111,7 +114,7 @@ class Cpu
 	void _00e0(OpCode op)
 	{
 		logger.writeln("CLS");
-		scr.clearScreen();
+		screen.clearScreen();
 		pc += 2;
 	}
 
@@ -287,7 +290,7 @@ class Cpu
 	void _dxxx(OpCode op)
 	{
 		logger.writefln("DRW V%x, V%x, %x", op.x, op.y, op.z);
-		V[0xf] = scr.drawSprite(V[op.x], V[op.y], op.z, memory[I .. I + op.z + 1]);
+		V[0xf] = screen.drawSprite(V[op.x], V[op.y], op.z, memory[I .. I + op.z + 1]);
 		pc += 2;
 	}
 	
@@ -307,13 +310,13 @@ class Cpu
 	void _ex9e(OpCode op)
 	{
 		logger.writefln("SKP V%x", op.x);
-		pc += kbd.isPressed(V[op.x]) ? 4 : 2;
+		pc += keyboard.isPressed(V[op.x]) ? 4 : 2;
 	}
 	
 	void _exa1(OpCode op)
 	{
 		logger.writefln("SKNP V%x", op.x);
-		pc += kbd.isPressed(V[op.x]) ? 2 : 4;
+		pc += keyboard.isPressed(V[op.x]) ? 2 : 4;
 	}
 	
 	void _fxxx(OpCode op)
@@ -347,7 +350,7 @@ class Cpu
 	{
 		logger.writefln("LD V%x, K", op.x);
 		wait_for_keypress = true;
-		ubyte pressed = kbd.getPressed();
+		ubyte pressed = keyboard.getPressed();
 		if(pressed != 0x10)
 		{
 			V[op.x] = pressed;

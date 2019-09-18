@@ -2,16 +2,6 @@ import std.typetuple;
 import std.range;
 import std.stdio : File, writeln, write;
 
-/* to use in a compile-time foreach
- * copy/pasted from : https://issues.dlang.org/show_bug.cgi?id=4085
- */
-template Iota(int start, int stop) {
-	static if (stop <= start)
-		alias TypeTuple!() Iota;
-	else
-		alias TypeTuple!(Iota!(start, stop-1), stop-1) Iota;
-}
-
 struct Logger
 {
 	File writer;

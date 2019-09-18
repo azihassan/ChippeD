@@ -1,3 +1,4 @@
+import std.conv: to;
 import derelict.sdl2.sdl;
 import derelict.sdl2.image;
 import cpu;
@@ -35,16 +36,13 @@ int main(string[] args)
 
 	if(output != "stdout")
 		writer = File(output, "w");
-	auto cpu = new Cpu();
-	auto scr = new Screen(zoom);
-	scope(exit) scr.cleanup();
-	auto kbd = new Keyboard;
+	auto screen = new Screen(zoom);
+	scope(exit) screen.cleanup();
+	auto keyboard = new Keyboard;
 	auto logger = Logger(writer);
 	logger.enable = debug_enable;
 
-	cpu.scr = scr;
-	cpu.kbd = kbd;
-	cpu.logger = logger;
+	auto cpu = new Cpu(keyboard, logger, screen);
 	cpu.loadGame(args[1]);
 	
 	bool running = true;
@@ -54,7 +52,7 @@ int main(string[] args)
 	int sleep_after = 5; //sleep after this many cycles
 
 	auto timers_timer = SDL_AddTimer(16u, cast(SDL_TimerCallback) &decrementTimers, cast(void *) cpu);
-	auto screen_timer = SDL_AddTimer(16u, cast(SDL_TimerCallback) &updateScreen, cast(void *) scr);
+	auto screen_timer = SDL_AddTimer(16u, cast(SDL_TimerCallback) &updateScreen, cast(void *) screen);
 	scope(exit)
 	{
 		SDL_RemoveTimer(timers_timer);
@@ -76,25 +74,25 @@ int main(string[] args)
 				else if(pressed == SDLK_p)
 				{
 					sleep_after = (sleep_after + 1) > 50 ? 50 : sleep_after + 1;
-					scr.setTitle(sleep_after.to!string ~ " opcodes per cycle");
+					screen.setTitle(sleep_after.to!string ~ " opcodes per cycle");
 				}
 				else if(pressed == SDLK_m)
 				{
 					sleep_after = (sleep_after - 1) < 1 ? 1 : sleep_after - 1;
-					scr.setTitle(sleep_after.to!string ~ " opcodes per cycle");
+					screen.setTitle(sleep_after.to!string ~ " opcodes per cycle");
 				}
 				else if(pressed == SDLK_RETURN)
 				{
 					pause = !pause;
-					scr.setTitle("[Pause]");
+					screen.setTitle("[Pause]");
 				}
 				else
 				{
-					cpu.kbd.press(pressed);
+					keyboard.press(pressed);
 				}
 			break;
 			case SDL_KEYUP:
-				cpu.kbd.unpress(event.key.keysym.sym);
+				keyboard.unpress(event.key.keysym.sym);
 			break;
 			default:
 			break;

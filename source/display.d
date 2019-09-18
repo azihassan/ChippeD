@@ -2,7 +2,7 @@ import derelict.sdl2.sdl;
 import std.string : toStringz;
 import std.stdio;
 import std.string;
-import std.format : to;
+import std.conv : to;
 import std.algorithm : map;
 
 
