@@ -17,41 +17,31 @@ The program takes a few arguments :
 
 A precompiled version for Windows can be downloaded [here](https://drive.google.com/file/d/0B0q6zR75es1eMWhhM2tvblF3UEE/edit?usp=sharing).
 
+![Running tetris](https://github.com/adam-p/markdown-here/raw/master/tetris.png "Running tetris")
+
 Key mapping
 -----------
 
 The chip8 has a hexadecimal keyboard of 16 buttons, here are the mappings :
 
-
-<table>
-	<tr>
-		<td>1 : A</td>
-		<td>2 : Z</td>
-		<td>3 : E</td>
-		<td>C : O</td>
-	</tr>
-
-	<tr>
-		<td>4 : Q</td>
-		<td>5 : S</td>
-		<td>6 : D</td>
-		<td>D : J</td>
-	</tr>
-
-	<tr>
-		<td>7 : W</td>
-		<td>8 : X</td>
-		<td>9 : C</td>
-		<td>E : K</td>
-	</tr>
-
-	<tr>
-		<td>A : U</td>
-		<td>0 : Space bar</td>
-		<td>B : I</td>
-		<td>F : L</td>
-	</tr>
-</table>
+|Chip8 | Keyboard |
+|------|----------|
+| 1 | A |
+| 2 | Z |
+| 3 | E |
+| 4 | Q |
+| 5 | S |
+| 6 | D |
+| 7 | W |
+| 8 | X |
+| 9 | C |
+| 0 | Space bar |
+| A | U |
+| B | I |
+| C | O |
+| D | J |
+| E | K |
+| F | L |
 
 
 In addition to these, the speed of the emulation can be controlled with the P and M buttons. P speeds it up while M slows it down.
