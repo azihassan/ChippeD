@@ -17,7 +17,8 @@ The program takes a few arguments :
 
 A precompiled version for Windows can be downloaded [here](https://drive.google.com/file/d/0B0q6zR75es1eMWhhM2tvblF3UEE/edit?usp=sharing).
 
-![Running tetris](https://github.com/adam-p/markdown-here/raw/master/tetris.png "Running tetris")
+![Running tetris](https://github.com/azihassan/ChippeD/raw/master/tetris.png "Running tetris")
+
 
 Key mapping
 -----------
